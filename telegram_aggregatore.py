@@ -27,15 +27,15 @@ if not API_ID or not API_HASH or not SESSION_STRING:
 
 # Canali filtrati per parole chiave — metti gli username reali (dopo t.me/)
 CANALI_SORGENTE = [
-    "bestprice_offerte",
-    "couponsuMarte",
-    "couponsitalia",
-    "offerte_tech",
+    "BestPrice_Errori_Offerte",
+    "couponsumarte",
+    "Couponsitalia",
+    "offerteescontiTech",
 ]
 
 # Canale pass-tutto (hardware usato: passa tutto senza filtro)
 CANALI_PASS_TUTTO = [
-    "hardware_offerte_usato",
+    "vereoffertewarehouse",
 ]
 
 # Parole chiave — modifica liberamente
