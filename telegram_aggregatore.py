@@ -38,6 +38,14 @@ CANALI_PASS_TUTTO = [
     "vereoffertewarehouse",
 ]
 
+BLACKLIST = [
+    "buona serata",
+    "buongiorno",
+    "buonanotte",
+    "offerte del giorno",
+    "segui i nostri canali",
+]
+
 # Parole chiave — modifica liberamente
 KEYWORDS = [
     "ssd", "nvme", "m.2", "hard disk", "hdd",
@@ -60,6 +68,9 @@ client = TelegramClient(StringSession(SESSION_STRING), int(API_ID), API_HASH)
 
 tutti_i_canali = CANALI_SORGENTE + CANALI_PASS_TUTTO
 
+def is_blacklistato(testo: str) -> bool:
+    testo_lower= testo.lower()
+    return any(b in testo_lower for b in BLACKLIST)
 
 def contiene_keyword(testo: str) -> bool:
     testo_lower = testo.lower()
@@ -76,7 +87,10 @@ async def gestore_messaggi(event):
         await client.forward_messages(DESTINAZIONE, event.message)
         print(f"[PASS-TUTTO] {nome_canale}: forwarded")
         return
-
+        #comunicazione trovato oggetto della BLACKLIST.
+    if is_blacklistato(testo):
+        print(f"[BLACKLIST] {nome_canale}")
+        #comunicazione trovato oggetto giusto.
     if contiene_keyword(testo):
         await client.forward_messages(DESTINAZIONE, event.message)
         print(f"[MATCH] {nome_canale}: forwarded")
