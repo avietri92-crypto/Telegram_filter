@@ -39,7 +39,7 @@ CANALI_PASS_TUTTO = [
 ]
 
 BLACKLIST = [
-    "buona serata",
+    "Buona serata",
     "buongiorno",
     "buonanotte",
     "offerte del giorno",
@@ -50,13 +50,13 @@ BLACKLIST = [
 KEYWORDS = [
     "ssd", "nvme", "m.2", "hard disk", "hdd",
     "ram", "ddr3", "ddr4", "ddr5", "dimm", "sodimm",
-    "processore", "cpu", "intel", "amd", "ryzen", "core i",
+    "processore", "cpu", "intel", "amd", "ryzen", " core i ",
     "scheda madre", "motherboard", "socket",
     "scheda video", "gpu", "nvidia", "radeon", "geforce", "gtx", "rtx", "rx ",
-    "monitor", "display", "schermo",
+    " monitor ", "display", "schermo",
     "alimentatore", "psu", "case pc",
     "laptop", "notebook", "thinkpad", "latitude", "elitebook", "ricondizionato",
-    "raspberry", "switch", "router", "nas",
+    "raspberry", "switch", "router", " nas "," sega ",
 ]
 
 # Destinazione: "me" = Saved Messages, oppure "@tuo_canale_privato"
