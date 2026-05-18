@@ -65,11 +65,12 @@ KEYWORDS = [
 DESTINAZIONE = "me"
 
 # ─── SCRIPT ──────────────────────────────────────────────────────────────────
+scheduler = AsyncIOScheduler()
 
 client = TelegramClient(StringSession(SESSION_STRING), int(API_ID), API_HASH)
 
 tutti_i_canali = CANALI_SORGENTE + CANALI_PASS_TUTTO
-
+scheduler = AsyncIOScheduler()
 def is_blacklistato(testo: str) -> bool:
     testo_lower= testo.lower()
     return any(b in testo_lower for b in BLACKLIST)
@@ -103,11 +104,5 @@ async def gestore_messaggi(event):
 async def main():
     scheduler.add_job(pulisci_saved_messages, "cron", hour=4, minute=0)
     scheduler.start()
-    await client.start()
-    print("Aggregatore avviato. In ascolto sui canali... (Ctrl+C per fermare)")
-    await client.run_until_disconnected()
-
-import asyncio
-asyncio.run(main())
-import asyncio
+   syncio
 asyncio.run(main())
