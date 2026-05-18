@@ -39,7 +39,7 @@ CANALI_PASS_TUTTO = [
 ]
 
 BLACKLIST = [
-    "buona serata",
+    "Buona serata",
     "buongiorno",
     "buonanotte",
     "offerte del giorno",
