@@ -108,7 +108,7 @@ async def pulisci_saved_messages():
     print("[PULIZIA] Completata")
 
 scheduler = AsyncIOScheduler()
-scheduler.add_job(pulisci_saved_messages, "cron", hour=0, minute=0)
+scheduler.add_job(pulisci_saved_messages, "cron", hour=5, minute=0)
 scheduler.start()
 with client:
     client.run_until_disconnected()
