@@ -6,6 +6,8 @@ Legge tutto da variabili d'ambiente, nessuna credenziale nel codice.
 import os
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from datetime import datetime
 
 # ─── CREDENZIALI DA VARIABILI D'AMBIENTE ─────────────────────────────────────
 
@@ -99,5 +101,14 @@ async def gestore_messaggi(event):
 
 
 print("Aggregatore avviato. In ascolto sui canali... (Ctrl+C per fermare)")
+async def pulisci_saved_messages():
+    print(f"[PULIZIA] Cancello i messaggi salvati - {datetime.now()}")
+    async for msg in client.iter_messages("me"):
+        await client.delete_messages("me", msg.id)
+    print("[PULIZIA] Completata")
+
+scheduler = AsyncIOScheduler()
+scheduler.add_job(pulisci_saved_messages, "cron", hour=0, minute=0)
+scheduler.start()
 with client:
     client.run_until_disconnected()
