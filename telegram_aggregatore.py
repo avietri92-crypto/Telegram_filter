@@ -100,15 +100,14 @@ async def gestore_messaggi(event):
         print(f"[SKIP] {nome_canale}: nessuna keyword trovata")
 
 
-print("Aggregatore avviato. In ascolto sui canali... (Ctrl+C per fermare)")
-async def pulisci_saved_messages():
-    print(f"[PULIZIA] Cancello i messaggi salvati - {datetime.now()}")
-    async for msg in client.iter_messages("me"):
-        await client.delete_messages("me", msg.id)
-    print("[PULIZIA] Completata")
+async def main():
+    scheduler.add_job(pulisci_saved_messages, "cron", hour=4, minute=0)
+    scheduler.start()
+    await client.start()
+    print("Aggregatore avviato. In ascolto sui canali... (Ctrl+C per fermare)")
+    await client.run_until_disconnected()
 
-scheduler = AsyncIOScheduler()
-scheduler.add_job(pulisci_saved_messages, "cron", hour=5, minute=0)
-scheduler.start()
-with client:
-    client.run_until_disconnected()
+import asyncio
+asyncio.run(main())
+import asyncio
+asyncio.run(main())
